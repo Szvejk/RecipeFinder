@@ -1,0 +1,21 @@
+.parentContainer {
+	text-align: center;
+	color: white;
+	position: relative;
+
+	.redElement {
+		position: relative;
+		width: 100vw;
+		height: 40vh;
+	}
+	.textHeader {
+		text-align: left;
+		position: absolute;
+		top: 20%;
+		left: 15%;
+		width: 30vw;
+		.centerTitle {
+			font-size: 55px;
+		}
+	}
+}

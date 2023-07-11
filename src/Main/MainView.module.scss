@@ -1,0 +1,42 @@
+.wrapperPart {
+	width: 100%;
+	height: 50vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	.buttonSearch {
+		width: 150px;
+		height: 50px;
+		border-radius: 10px;
+		border: none;
+		background-color: rgb(138, 25, 25);
+		color: white;
+		font-weight: 600;
+		font-size: 15px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		margin-left: 1%;
+	}
+	.mainTitle {
+		font-size: 30px;
+		margin-bottom: 30px;
+		color: rgb(68, 64, 64);
+	}
+	.searchPart {
+		width: 50%;
+		height: 50%;
+		display: flex;
+		flex-direction: column;
+		margin-left: 20%;
+		span {
+			color: gray;
+			margin-bottom: 10px;
+		}
+		.inputSearch {
+			width: 600px;
+			height: 50px;
+			padding: 10px;
+		}
+	}
+}
