@@ -1,0 +1,21 @@
+.parentContainer {
+  text-align: center;
+  color: white;
+  position: relative;
+}
+.parentContainer .redElement {
+  position: relative;
+  width: 90vw;
+  height: 40vh;
+  left: -100px;
+}
+.parentContainer .textHeader {
+  text-align: left;
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 30vw;
+}
+.parentContainer .textHeader .centerTitle {
+  font-size: 55px;
+}/*# sourceMappingURL=Header.module.css.map */
