@@ -13,8 +13,23 @@
 }
 .wrapperMain .searchPart {
   width: 500px;
-  height: 100px;
+  height: 300px;
   margin-bottom: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.wrapperMain .searchPart .searcher {
+  margin-bottom: 4%;
+  color: rgb(100, 10, 44);
+  font-weight: 600;
 }
 .wrapperMain .searchPart .mainTitle {
   margin-top: 10px;
@@ -31,11 +46,11 @@
 }
 .wrapperMain .searchPart .buttonSearch {
   width: 100px;
-  height: 50px;
+  height: 45px;
   margin-left: 10px;
   border-radius: 10px;
   border: none;
-  background-color: #8b1e1e;
+  background-color: #be3e3e;
   color: white;
   font-weight: 600;
   -webkit-transition: 0.3s ease;
@@ -45,9 +60,6 @@
   background-color: #cf3c3c;
 }
 .wrapperMain .allWrapped {
-  width: 100%;
-  height: 100%;
-  background-color: pink;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,6 +71,12 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+.wrapperMain .allWrapped .titleofRecipe {
+  text-decoration: none;
+  color: black;
+  letter-spacing: 1px;
+  padding: 10px;
 }
 .wrapperMain .allWrapped .oneRecipeMain {
   background-color: #fff;
@@ -88,4 +106,74 @@
   -o-object-fit: cover;
      object-fit: cover;
   background-position: center;
+}
+
+@media (max-width: 1000px) {
+  .wrapperMain {
+    position: relative;
+  }
+  .wrapperMain .searchPart {
+    width: 100vw;
+    position: absolute;
+    left: 10%;
+    margin-top: 5%;
+  }
+  .wrapperMain .searchPart .flexInputWithButton {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .wrapperMain .searchPart .flexInputWithButton .buttonSearch {
+    margin-top: 10px;
+  }
+  .wrapperMain .searchPart .inputSearch {
+    width: 300px;
+    height: 5vh;
+    padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .wrapperMain .searchPart .mainTitle {
+    margin-top: 20%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .wrapperMain {
+    width: 90vw;
+    height: 10vh;
+  }
+  .wrapperMain .searchPart {
+    width: 100vw;
+    height: 10vh;
+    position: absolute;
+    left: 10%;
+    top: 40%;
+    height: 30vh;
+    margin-top: 5%;
+  }
+  .wrapperMain .searchPart .flexInputWithButton {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .wrapperMain .searchPart .flexInputWithButton .buttonSearch {
+    margin-top: 10px;
+  }
+  .wrapperMain .searchPart .inputSearch {
+    width: 500px;
+    height: 5vh;
+    padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 15px;
+  }
+  .wrapperMain .searchPart .mainTitle {
+    margin-top: 10%;
+  }
 }/*# sourceMappingURL=MainView.module.css.map */

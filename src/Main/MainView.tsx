@@ -62,7 +62,7 @@ const MainView = () => {
 			<section className={styles.wrapperMain}>
 				<div className={styles.searchPart}>
 					<h3 className={styles.mainTitle}>Search</h3>
-					<span>Search results for</span>
+					<span className={styles.searcher}>Search results for</span>
 					<div className={styles.flexInputWithButton}>
 						<input
 							type='text'

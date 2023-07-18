@@ -14,9 +14,54 @@
 		position: absolute;
 		top: 20%;
 		left: 15%;
-		width: 30vw;
+		width: 35vw;
 		.centerTitle {
 			font-size: 55px;
+		}
+	}
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px) {
+	.parentContainer {
+		position: relative;
+		color: white;
+
+	
+		.textHeader {
+			width: 45vw;
+			position: absolute;
+			top: 20%;
+			left: 10%;
+			color: rgb(255, 255, 255);
+			.centerTitle {
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+@media (max-width: 1000px) {
+	.parentContainer {
+		position: relative;
+		background-color: rgb(207, 63, 63);
+		height: 40vh;
+		color: white;
+
+		.redElement {
+			display: none;
+		}
+		.textHeader {
+			width: 80vw;
+			position: absolute;
+			top: 20%;
+			left: 0;
+			margin: 30px;
+			color: white;
+			font-size: 15px;
+			.centerTitle {
+				font-size: 20px;
+				margin-bottom: 10px;
+			}
 		}
 	}
 }
