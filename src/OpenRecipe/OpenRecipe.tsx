@@ -1,41 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './OpenRecipe.module.scss';
+import detailsRecipe from '../App';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
-interface UserData {
-	recipe: {
-		vegetarian: string;
-		vegan: string;
-		orginalName: string;
-		title: string;
-		servings: number;
-		summary: string;
-		ingredients: { orginal: string };
-		instructions: string;
-		cuisines: string;
-		image: string;
+const OpenRecipe = () => {
+	const [detailsRecipe, setDetailsRecipes] = useState<any>({});
+
+	const getDetails = () => {
+		axios
+			.get(
+				`https://api.spoonacular.com/recipes/${params.id}/information?apiKey=28e4f463047f47b9a250a32418c780c8`
+			)
+			.then((res) => {
+				console.log(res.data, 'C');
+				setDetailsRecipes(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
-}
 
-interface Props {
-	detailsRecipe: UserData | null;
-}
+	useEffect(() => {
+		getDetails();
+	}, []);
 
-const OpenRecipe = ({ detailsRecipe }: Props) => {
+	const params = useParams();
+	console.log(params);
 	return (
 		<div>
 			<div className={styles.wrapper}>
-				<div className={styles.infoAboutUser}>
-					<span>
-						{detailsRecipe?.recipe.title} {detailsRecipe?.recipe.orginalName}
-					</span>
-
-					<span> {detailsRecipe?.recipe.vegetarian} </span>
-					<span>{detailsRecipe?.recipe.servings}</span>
-					<span> {detailsRecipe?.recipe.summary}</span>
-					<span> {detailsRecipe?.recipe.ingredients.orginal}</span>
-					<span> {detailsRecipe?.recipe.cuisines}</span>
-					<img src={detailsRecipe?.recipe.image} alt='' />
-				</div>
+				<span>{detailsRecipe?.title}</span>
+				<img src={detailsRecipe.image} alt="" />
+				<span>{detailsRecipe?.title}</span>
+				<span>{detailsRecipe?.title}</span>
 			</div>
 		</div>
 	);

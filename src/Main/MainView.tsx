@@ -2,41 +2,41 @@ import React, { useState, useEffect } from 'react';
 import styles from './MainView.module.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import Header from '../Header/Header';
-interface Props {
-	setdetailsRecipe: React.Dispatch<React.SetStateAction<UserData | null>>;
-}
 
-interface UserData {
-	recipe: {
-		vegetarian: string;
-		vegan: string;
-		orginalName: string;
-		title: string;
-		servings: number;
-		summary: string;
-		ingredients: { orginal: string };
-		instructions: string;
-		cuisines: string;
-		image: string;
-	};
-}
-interface queryInterface {
+import Header from '../Header/Header';
+
+interface Recipe {
+	id: number;
 	vegetarian: string;
 	vegan: string;
-	image: string;
-	cuisines: string;
 	title: string;
+	cuisines: string[];
+	image: string;
 }
 
-const MainView = ({ setdetailsRecipe }: Props) => {
-	const navigate = useNavigate();
-	useEffect(() => {
-		info();
-	}, []);
-	const [recipes, setRecipes] = useState<any>([]);
-	const [query, setQuery] = useState<any>('');
+const testData = [
+	{
+		id: 633258,
+		title: 'Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs',
+		image: 'https://spoonacular.com/recipeImages/632572-556x370.jpg',
+
+		cuisines: ['American'],
+		vegan: 'false',
+		vegetarian: 'true',
+	},
+	{
+		id: 632572,
+		title: 'What to make for dinner tonight?? Bruschetta Style Pork & Pasta',
+		image: 'https://spoonacular.com/recipeImages/633258-556x370.jpg',
+		cuisines: ['Mediterranean', 'Italian', 'European'],
+		vegan: 'false',
+		vegetarian: 'true',
+	},
+];
+
+const MainView = () => {
+	const [recipes, setRecipes] = useState<Recipe[]>([]);
+	const [query, setQuery] = useState('');
 
 	const info = () => {
 		axios
@@ -52,6 +52,10 @@ const MainView = ({ setdetailsRecipe }: Props) => {
 			});
 	};
 
+	useEffect(() => {
+		info();
+	}, []);
+
 	return (
 		<>
 			<Header />
@@ -65,9 +69,8 @@ const MainView = ({ setdetailsRecipe }: Props) => {
 							className={styles.inputSearch}
 							placeholder='Enter search text'
 							onChange={(el) => setQuery(el.target.value)}
-						/>{' '}
+						/>
 						<button onClick={() => info()} className={styles.buttonSearch}>
-							{' '}
 							Search
 						</button>
 					</div>
@@ -76,19 +79,18 @@ const MainView = ({ setdetailsRecipe }: Props) => {
 				<section className={styles.allWrapped}>
 					{recipes.length
 						? recipes
-								.filter((el: queryInterface) =>
+								.filter((el: Recipe) =>
 									el.title.toLowerCase().includes(query.toLowerCase())
 								)
-								.map((el: queryInterface, index: number) => (
-									<Link to='/details'>
-										<div
-											key={index}
-											className={styles.oneRecipeMain}
-											onClick={() => setdetailsRecipe(recipes)}
-										>
+								.map((el: Recipe, index: number) => (
+									<Link
+										key={index}
+										to={`/details/${el.id}`}
+										className={styles.titleofRecipe}
+									>
+										<div className={styles.oneRecipeMain}>
 											<span className={styles.titleRecipe}>{el.title}</span>
 											<img className={styles.imgDiv} src={el.image} />
-
 											<span>{el.vegetarian}</span>
 											<span>{el.vegan}</span>
 											<span>{el.cuisines + ' '}</span>
