@@ -1,0 +1,24 @@
+.wrapper {
+	height: 100vh;
+	width: 100vw;
+	background-color: rgb(243, 243, 243);
+	display: flex;
+	flex-direction: column;
+	.imgRecipe {
+		width: 30%;
+		height: 40%;
+	}
+	.recipeTitle {
+        font-size: 25px;
+        font-weight: 800;
+        line-height: 85px;
+	}
+    .ingredientsText{
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .nameIngredient{
+        margin: 10px;
+        font-style: italic;
+    }
+}

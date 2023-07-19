@@ -88,8 +88,8 @@
 			width: 100vw;
 			position: absolute;
 			left: 10%;
+			top: 0%;
 
-			margin-top: 5%;
 			.flexInputWithButton {
 				display: flex;
 				flex-direction: column;
@@ -113,16 +113,13 @@
 
 @media screen and (min-width: 600px) and (max-width: 1200px) {
 	.wrapperMain {
-		width: 90vw;
-		height: 10vh;
 		.searchPart {
 			width: 100vw;
 			height: 10vh;
 			position: absolute;
 			left: 10%;
-			top: 40%;
+
 			height: 30vh;
-			margin-top: 5%;
 
 			.flexInputWithButton {
 				display: flex;
