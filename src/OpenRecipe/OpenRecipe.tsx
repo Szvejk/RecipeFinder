@@ -1,20 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './OpenRecipe.module.scss';
 import detailsRecipe from '../App';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Favourite from '../Favourite/Favourite';
+import { singleItem } from '../base';
+import { Link } from 'react-router-dom';
 
 interface SingleRecipe {
-	id:number,
+	id: number;
 	image: string;
 	title: string;
 	extendedIngredients: string[];
 	servings: number;
 	cuisines: string[];
+	instructions: string;
 }
 
-const OpenRecipe = () => {
-	const [detailsRecipe, setDetailsRecipes] = useState<any>({});
+interface RecipeFav {
+	title: string;
+	image: string;
+}
+
+interface Props {
+	setFav: React.Dispatch<React.SetStateAction<RecipeFav[]>>;
+	fav: RecipeFav[];
+}
+
+const OpenRecipe = ({ setFav, fav }: Props) => {
+	const [detailsRecipe, setDetailsRecipes] = useState<any>(singleItem);
+	const [showFav, setShowFav] = useState(false);
+	const divText = useRef<HTMLDivElement>(null);
 
 	const getDetails = () => {
 		axios
@@ -23,8 +39,9 @@ const OpenRecipe = () => {
 			)
 			.then((res) => {
 				console.log(res.data);
-				setDetailsRecipes(res.data);
+				// setDetailsRecipes(res.data);
 			})
+
 			.catch((err) => {
 				console.log(err);
 			});
@@ -34,25 +51,73 @@ const OpenRecipe = () => {
 		getDetails();
 	}, []);
 
+	useEffect(() => {
+		if (detailsRecipe.instructions) {
+			divText.current!.innerHTML = detailsRecipe.instructions;
+		}
+	}, [getDetails]);
+
 	const params = useParams();
 	console.log(detailsRecipe);
 	return (
-		<div>
+		<>
 			<div className={styles.wrapper}>
-				<img src={detailsRecipe.image}  className= {styles.imgRecipe}alt='' />
-				<span className={styles.recipeTitle}>{detailsRecipe?.title}</span>
- <span className={styles.ingredientsText}> Ingredients:  </span>
-				{
-				detailsRecipe.title &&
-					detailsRecipe.extendedIngredients.map((el: any, id:number) => (
-						<div key={id}>
-						<span className={styles.nameIngredient}> {el.name} </span></div>
-					))}
-					
-				<span>Kuchnia: {detailsRecipe?.cuisines}</span>
-				<span>Liczba porcji: {detailsRecipe?.servings}</span>
+				<div
+					onClick={() => setShowFav((prev) => !prev)}
+				
+				>	
+					{' '}
+					{!showFav ? (
+						<>
+							<div className={styles.showRecipe}>
+								<Favourite fav={fav} setFav={setFav} />
+							</div>
+						</>
+					) : (
+						<button className={styles.ulubione}>
+							<span> Ulubione </span>
+						</button>
+					)}
+				</div>
+				<div className={styles.ingredients}>
+					<span className={styles.ingredientsText}> Ingredients: </span>
+					{detailsRecipe.title &&
+						detailsRecipe.extendedIngredients.map((el: any, id: number) => (
+							<div key={id}>
+								<span className={styles.nameIngredient}> {el.name} </span>
+							</div>
+						))}{' '}
+					<button
+						className={styles.favAdd}
+						onClick={() => {
+							if (!fav.find((el) => el.title === detailsRecipe.title)) {
+								setFav((prev) => [
+									...prev,
+									{ title: detailsRecipe.title, image: detailsRecipe.image },
+								]);
+							}
+						}}
+					>
+						Add to favourite
+					</button>
+				</div>
+				<div className={styles.wrap}>
+					<img src={detailsRecipe.image} className={styles.imgRecipe} alt='' />
+					<div className={styles.textRecipe}>
+						<span className={styles.recipeTitle}>{detailsRecipe?.title}</span>
+						<span>Cuisine: {detailsRecipe?.cuisines + ' '}</span>
+						<span>Servings: {detailsRecipe?.servings}</span>
+						<span> Ready in {detailsRecipe?.readyInMinutes} minutes!</span>
+					</div>{' '}
+				</div>{' '}
 			</div>
-		</div>
+			<div className={styles.instructions}>
+				<div className={styles.paragraphInstructions}>
+					<b> Instructions: </b>
+					<div ref={divText} className={styles.instructionsText}></div>
+				</div>
+			</div>{' '}
+		</>
 	);
 };
 

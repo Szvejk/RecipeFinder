@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './MainView.module.scss';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { recipesList } from '../base';
 
 import Header from '../Header/Header';
 
@@ -14,28 +15,9 @@ interface Recipe {
 	image: string;
 }
 
-const testData = [
-	{
-		id: 633258,
-		title: 'Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs',
-		image: 'https://spoonacular.com/recipeImages/632572-556x370.jpg',
-
-		cuisines: ['American'],
-		vegan: 'false',
-		vegetarian: 'true',
-	},
-	{
-		id: 632572,
-		title: 'What to make for dinner tonight?? Bruschetta Style Pork & Pasta',
-		image: 'https://spoonacular.com/recipeImages/633258-556x370.jpg',
-		cuisines: ['Mediterranean', 'Italian', 'European'],
-		vegan: 'false',
-		vegetarian: 'true',
-	},
-];
 
 const MainView = () => {
-	const [recipes, setRecipes] = useState<Recipe[]>([]);
+	const [recipes, setRecipes] = useState<any>(recipesList);
 	const [query, setQuery] = useState('');
 
 	const info = () => {
