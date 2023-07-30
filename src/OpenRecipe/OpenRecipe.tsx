@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './OpenRecipe.module.scss';
-import detailsRecipe from '../App';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Favourite from '../Favourite/Favourite';
-import { singleItem } from '../base';
-import { Link } from 'react-router-dom';
+import { RecipeFav } from '../Interfaces';
 
 interface SingleRecipe {
 	id: number;
@@ -17,18 +15,13 @@ interface SingleRecipe {
 	instructions: string;
 }
 
-interface RecipeFav {
-	title: string;
-	image: string;
-}
-
 interface Props {
 	setFav: React.Dispatch<React.SetStateAction<RecipeFav[]>>;
 	fav: RecipeFav[];
 }
 
 const OpenRecipe = ({ setFav, fav }: Props) => {
-	const [detailsRecipe, setDetailsRecipes] = useState<any>(singleItem);
+	const [detailsRecipe, setDetailsRecipes] = useState<any>([]);
 	const [showFav, setShowFav] = useState(false);
 	const divText = useRef<HTMLDivElement>(null);
 
@@ -39,7 +32,7 @@ const OpenRecipe = ({ setFav, fav }: Props) => {
 			)
 			.then((res) => {
 				console.log(res.data);
-				// setDetailsRecipes(res.data);
+				setDetailsRecipes(res.data);
 			})
 
 			.catch((err) => {
@@ -62,10 +55,7 @@ const OpenRecipe = ({ setFav, fav }: Props) => {
 	return (
 		<>
 			<div className={styles.wrapper}>
-				<div
-					onClick={() => setShowFav((prev) => !prev)}
-				
-				>	
+				<div onClick={() => setShowFav((prev) => !prev)}>
 					{' '}
 					{!showFav ? (
 						<>

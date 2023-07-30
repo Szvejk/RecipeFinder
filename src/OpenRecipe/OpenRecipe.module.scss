@@ -7,10 +7,12 @@
 	.ulubione {
 		height: 60px;
 		width: 150px;
-		transform: translate(-80%, 150px);
+		transform: translate(-80%, 50px);
+
 		border-radius: 20px;
-		background-color: rgb(238, 166, 166);
+		background-color: rgb(183, 137, 176);
 		margin: 3%;
+		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -19,17 +21,17 @@
 		border: none;
 		font-size: 18px;
 		letter-spacing: 1px;
-		transition: all .3s ease;
+		transition: all 0.3s ease;
 
-		&:hover{
-			background-color: violet;
+		&:hover {
+			background-color: rgb(169, 134, 168);
+			box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		}
-		
+
 		.showRecipe {
-			transform: translate(30%, 250px);
 			min-height: 300px;
 			min-width: 400px;
-			background-color: rgb(225, 172, 172);
+			background-color: rgb(175, 124, 185);
 		}
 		.ulubione {
 			font-size: 20px;
@@ -51,14 +53,13 @@
 		}
 	}
 	.ingredients {
-		margin-top: 4%;
+		margin-top: 2%;
 		min-width: 200px;
 		min-height: 500px;
 		text-align: center;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		line-height: 30px;
 
 		.ingredientsText {
 			font-weight: 700;
@@ -69,14 +70,22 @@
 		margin-top: 3%;
 	}
 	.favAdd {
-		width: 200px;
-		margin: 40px;
+		min-width: 200px;
+		margin: 10px;
 		border-radius: 10px;
 		border: none;
 		background-color: rgb(87, 28, 110);
-		height: 50px;
+		min-height: 50px;
 		color: white;
 		font-weight: 700;
+		box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+		&:hover {
+			background-color: rgb(73, 21, 97);
+			box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+				rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+				rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+		}
 	}
 }
 .instructions {

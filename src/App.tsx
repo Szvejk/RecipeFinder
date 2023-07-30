@@ -1,15 +1,10 @@
-import React, { useState } from 'react';
-import Header from './Header/Header';
-import styles from './App.module.scss';
+import { useState } from 'react';
+
 import MainView from './Main/MainView';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OpenRecipe from './OpenRecipe/OpenRecipe';
 import Favourite from './Favourite/Favourite';
-
-interface RecipeFav {
-	title: string;
-	image: string;
-}
+import { RecipeFav } from './Interfaces';
 
 const App = () => {
 	const [fav, setFav] = useState<RecipeFav[]>([]);

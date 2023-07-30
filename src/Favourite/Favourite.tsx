@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './Favourite.module.scss';
 
-interface RecipeFav {
-	title: string;
-	image: string;
-}
+import { RecipeFav } from '../Interfaces';
+
 interface Props {
 	fav: RecipeFav[];
 	setFav: React.Dispatch<React.SetStateAction<RecipeFav[]>>;
@@ -15,12 +13,13 @@ const Favourite = ({ fav, setFav }: Props) => {
 
 	return (
 		<div className={styles.favouriteWrapper}>
-		<span className={styles.listOfFavourities}>Lista ulubionych przepisów</span>
+			<span className={styles.listOfFavourities}>
+				Lista ulubionych przepisów
+			</span>
 			{fav
 				? fav.map((el, index) => (
 						<>
 							<div className={styles.favList}>
-								
 								<div key={`el${index}`} className={styles.recipewithButton}>
 									<span> {el.title}</span>
 									<img
